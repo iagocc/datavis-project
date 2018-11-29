@@ -2,7 +2,7 @@ import pycountry
 import pandas as pd
 import numpy
 
-data = pd.read_csv("../src/data/data.csv", sep=',', encoding='unicode_escape')
+data = pd.read_csv("../src/data/data.csv", sep=',')
 counter = data.groupby("Country").size().reset_index()
 counter.columns = ['Country', 'Count']
 
@@ -10,7 +10,7 @@ countries = {}
 country_codes = pycountry.countries
 
 for c in country_codes:
-    countries[c.numeric] = (c.name, 0)
+    countries[c.alpha_3] = (c.name, 0)
 
 names = [c.name for c in list(country_codes)]
 
@@ -18,7 +18,7 @@ names = [c.name for c in list(country_codes)]
 for c in counter.iterrows():
     name = c[1].Country
     if name in names:
-        code = int(country_codes.get(name=name).numeric)
+        code = country_codes.get(name=name).alpha_3
         countries[code] = (name, c[1].Count)
 
 countries_list = []

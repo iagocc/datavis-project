@@ -1,18 +1,12 @@
 import '../styles/index.scss';
 
-let view;
+import {chart1} from '../scripts/chart1';
+import {chart2, populateCountries} from '../scripts/chart2';
+import {chart3, updateSelectedCountry} from '../scripts/chart3';
 
-function render(spec, el) {
-    view = new vega.View(vega.parse(spec))
-                .renderer('canvas')
-                .initialize(el)
-                .hover()
-                .run();
-}
-
-// Chart 1 - Vega
-vega.loader()
-    .load("/src/charts/chart1.json")
-    .then(data => {
-        return render(JSON.parse(data), "#chart1");
-    });
+window.onload = function() {
+    chart1(updateSelectedCountry);
+    populateCountries();
+    chart2();
+    chart3();
+};
