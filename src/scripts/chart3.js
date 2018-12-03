@@ -1,6 +1,4 @@
-let selectedCountries = ["BRA", "Overall"];
-
-export function chart3() {
+export function chart3(selectedCountries) {
     let chart = document.querySelector("#chart3");
 
     let svg = d3.select("#chart3 svg").attr("width", chart.offsetWidth).attr("height", chart.offsetHeight);
@@ -105,11 +103,4 @@ export function chart3() {
                 .text(d => { return d.Country; });
 
     });
-}
-
-export function updateSelectedCountry(countryCode) {
-    selectedCountries = [];
-    selectedCountries.push(countryCode);
-    selectedCountries.push("Overall");
-    chart3();
 }

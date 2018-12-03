@@ -38,13 +38,46 @@ export function chart1(selectCountryCallback) {
                 }
             });
 
+            let clickedCountry = {
+                "name" : "Brazil",
+                "layer" : null,
+                "feature": null,
+            };
+
             L.geoJson(geojson, {
                 style: colorFunction,
                 onEachFeature: (feature, layer) => {
+
+                    // we must set this to clear when clicked in another layer
+                    if (feature.properties.name === clickedCountry.name && clickedCountry.obj == null) {
+                        clickedCountry.layer = layer;
+                        clickedCountry.feature = feature;
+                        layer.setStyle({fillColor: "red", fillOpacity: 0.7});
+                    }
+
                     layer.bindTooltip("<b>" + feature.properties.name + "</b></br>" + feature.properties.count + " attended the survey");
-                    layer.on("mouseover", e => layer.setStyle({fillColor: "black", fillOpacity: 0.7}));
-                    layer.on("mouseout", e => layer.setStyle(colorFunction(feature)));
-                    layer.on("click", e => selectCountryCallback(e.target.feature.id));
+                    layer.on("mouseover", e => {
+                        if (e.target.feature.properties.name != clickedCountry.name) {
+                            layer.setStyle({fillColor: "black", fillOpacity: 0.7});
+                        }
+                    });
+                    layer.on("mouseout", e => {
+                        if (e.target.feature.properties.name != clickedCountry.name) {
+                            layer.setStyle(colorFunction(feature));
+                        }
+                    });
+                    layer.on("click", e => {
+                        // reset the color
+                        clickedCountry.layer.setStyle(colorFunction(clickedCountry.feature));
+
+                        // set the new clicked country
+                        clickedCountry.name = e.target.feature.properties.name;
+                        clickedCountry.layer = layer;
+                        clickedCountry.feature = feature;
+
+                        layer.setStyle({fillColor: "red", fillOpacity: 0.7});
+                        selectCountryCallback(e.target.feature.id);
+                    });
                 }
             }).addTo(map);
 
