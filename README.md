@@ -2,7 +2,7 @@
 
 Open the terminal and move to the **build** folder.
 
-Inside de **build** folder, type the following command:
+Inside the **build** folder, type the following command:
 
 ```
 python3 -m http.server
