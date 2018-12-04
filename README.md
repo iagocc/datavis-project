@@ -1,3 +1,11 @@
-# Data Vis Course Final Assessment
+# DataVis Course Final Assessment
 
-The compiled source of this project is placed on build folder.
+Open the terminal and move to the **build** folder.
+
+Inside de **build** folder, type the following command:
+
+```
+python3 -m http.server
+```
+
+Open your prefered web browser and access the localhost at the port displayed in the terminal.
