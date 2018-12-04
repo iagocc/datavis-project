@@ -1,0 +1,142 @@
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  background: #F0F2F4; }
+
+.navbar.is-white {
+  background: #F0F2F4; }
+
+.navbar-brand .brand-text {
+  font-size: 1.11rem;
+  font-weight: bold; }
+
+.hero-body {
+  background-image: url(src/images/devices.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 500px; }
+  .hero-body h1 {
+    font-size: 32pt;
+    text-shadow: 0 1px black; }
+
+.articles {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: -200px; }
+
+.articles .content p {
+  line-height: 1.9;
+  margin: 15px 0; }
+
+.author1-image {
+  position: absolute;
+  top: -40px;
+  left: 54%;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  border: 3px solid #fff;
+  border-radius: 50%; }
+
+.author2-image {
+  position: absolute;
+  top: -40px;
+  left: 46%;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  border: 3px solid #fff;
+  border-radius: 50%; }
+
+.media-center {
+  display: block;
+  margin-bottom: 1rem; }
+
+.media-content {
+  margin-top: 3rem; }
+
+.article, .promo-block {
+  margin-top: 6rem; }
+
+div.column.is-8:first-child {
+  padding-top: 0;
+  margin-top: 0; }
+
+.article-title {
+  font-size: 2rem;
+  font-weight: lighter;
+  line-height: 2; }
+
+.article-subtitle {
+  color: #909AA0;
+  margin-bottom: 3rem; }
+
+.article-body {
+  line-height: 1.4; }
+
+.promo-block .container {
+  margin: 1rem 5rem; }
+
+#chart1 {
+  width: 100%;
+  height: 600px; }
+  #chart1 .legend {
+    line-height: 18px;
+    color: #555; }
+  #chart1 .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7; }
+
+.chart2-container {
+  display: flex; }
+  .chart2-container #chart2 {
+    flex-basis: 75%;
+    height: 400px; }
+  .chart2-container rect:hover {
+    fill: black;
+    opacity: 0.7; }
+  .chart2-container #chart2-select {
+    flex-basis: 25%;
+    height: 400px;
+    display: flex;
+    flex-direction: column; }
+    .chart2-container #chart2-select .select {
+      flex: 1; }
+      .chart2-container #chart2-select .select select {
+        height: 100%; }
+
+#chart3 {
+  width: 100%;
+  height: 400px; }
+  #chart3 rect:hover {
+    fill: black;
+    opacity: 0.7; }
+
+#chart9 {
+  width: 100%;
+  height: 400px; }
+
+#chart11-container #chart11 {
+  width: 100%;
+  height: 400px; }
+
+#chart11-container #chart11-2 {
+  width: 100%;
+  height: 400px; }
+
+.clear-both {
+  clear: both; }
+
+#chart12 {
+  width: 100%;
+  height: 400px; }
+  #chart12 rect:hover {
+    fill: black;
+    opacity: 0.7; }
+
+
+/*# sourceMappingURL=bundle.css.map*/
