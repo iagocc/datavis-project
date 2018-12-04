@@ -5,6 +5,7 @@ import {chart2, populateCountries} from '../scripts/chart2';
 import {chart3, updateSelectedCountry} from '../scripts/chart3';
 import {chart9} from '../scripts/chart9';
 import {chart11} from '../scripts/chart11';
+import {chart12} from '../scripts/chart12';
 
 window.onload = function() {
 
@@ -20,6 +21,7 @@ window.onload = function() {
         // Charts that uses selected country
         chart3(selectedCountries);
         chart9(selectedCountry);
+        chart12(selectedCountries);
     }
 
 
@@ -29,4 +31,5 @@ window.onload = function() {
     chart3(selectedCountries);
     chart9(selectedCountry);
     chart11();
+    chart12(selectedCountries);
 };

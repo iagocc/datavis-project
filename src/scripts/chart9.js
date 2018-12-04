@@ -14,14 +14,22 @@ export function chart9(selectedCountry) {
 
     function forceSimulation(nodes, centroids) {
         return d3.forceSimulation(nodes)
-            .force('center', d3.forceCenter(width/2 + 100, height/2 + 25))
+            .force('center', d3.forceCenter(width/2 + 50, height/2 + 12.5))
             .force('collide', d3.forceCollide(d => { return d.radius + padding; }))
             .force('cluster', d3.forceCluster().centers(d => centroids[d.cluster]).strength(0.5));
-      }
+    }
+
+    let tip = d3.tip().attr('class', 'd3-tip').html(d => d.group);
+    svg.call(tip);
 
     d3.csv("../src/data/chart9_bonus.csv").then(data => {
-
         let filtered = data.filter(e => e.Code === selectedCountry);
+
+        if (filtered.length == 0) {
+            console.log("Empty data");
+            return;
+        }
+
         let keys = Object.keys(data[0]).slice(1, -1);
         let sum = keys.reduce((a, c) => parseInt(a) + parseInt(filtered[0][c]), 0);
         let centroids = [];
@@ -53,7 +61,9 @@ export function chart9(selectedCountry) {
             .attr("class", "node")
             .attr("r", d => d.radius)
             .attr("stroke", d => d3.color(colorScale(d.cluster/10.0)).darker())
-            .attr("fill", d => colorScale(d.cluster/10.0));
+            .attr("fill", d => colorScale(d.cluster/10.0))
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
 
         let ticked = () => {
             nodes

@@ -31,6 +31,8 @@ export function chart11() {
             });
           });
 
+          let colorScale = d3.scaleOrdinal(d3.schemeYlGnBu[5].slice(1));
+
           // creating the crossfilter
           let facts = crossfilter(formatedData);
 
@@ -75,9 +77,9 @@ export function chart11() {
 
             // Pie chart
             piechart.width(width)
-                    .height(height)
+                    .height(height-50)
                     .slicesCap(4)
-                    .innerRadius(100)
+                    .innerRadius(80)
                     .externalLabels(50)
                     .externalRadiusPadding(50)
                     .drawPaths(true)
@@ -86,6 +88,7 @@ export function chart11() {
                     .label(d => {
                         return answers[d.key];
                     })
+                    .colors(colorScale)
                     .legend(dc.legend().legendText( (d) => answers[d.name] ));
 
             piechart.onClick = function() {};

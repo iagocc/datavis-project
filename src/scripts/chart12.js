@@ -1,7 +1,7 @@
-export function chart3(selectedCountries) {
-    let chart = document.querySelector("#chart3");
+export function chart12(selectedCountries) {
+    let chart = document.querySelector("#chart12");
 
-    let svg = d3.select("#chart3 svg").attr("width", chart.offsetWidth).attr("height", chart.offsetHeight);
+    let svg = d3.select("#chart12 svg").attr("width", chart.offsetWidth).attr("height", chart.offsetHeight);
 
     svg.selectAll("*").remove();
 
@@ -21,40 +21,41 @@ export function chart3(selectedCountries) {
                 .rangeRound([height, 0]);
 
     let tip = d3.tip().attr('class', 'd3-tip').html(d => {
-        return "Taste rate: " + parseInt(+d.value) + "%";
+        return "# of people who knows the tecnology: " + parseInt(+d.value) + "";
     });
     svg.call(tip);
 
-    d3.csv("../src/data/chart3.csv").then(data => {
+    d3.csv("../src/data/chart10_bonus.csv").then(data => {
         // get the name of the fields
         let keys = Object.keys(data[0]).slice(2, -1);
 
-        let overall = {"Country": "Overall", "Code":"Overall"};
+        let overall = {"Country": "Overall Mean", "Code":"Overall"};
         const numberOfAttends = data.reduce((a, e) => parseInt(a) + parseInt(e["# Users"]), 0);
 
         keys.forEach(key => {
             overall[key] = data.reduce((a, e) => parseInt(a) + parseInt(e[key]), 0);
-            overall[key] = (overall[key] / numberOfAttends)*100;
-        });
-        
-        // Formating the data
-        data.forEach(e => {
-            keys.forEach(att => {
-                e[att] = +e[att];
-                e[att] = (e[att] / e["# Users"])*100;
-            });
+            overall[key] = parseInt(overall[key]) / parseFloat(data.length);
         });
 
         data.push(overall);
 
         let filtered = data.filter((e => selectedCountries.includes(e.Code)));
+        
+        // Formating the data
+        let allValues = [];
+        filtered.forEach(e => {
+            keys.forEach(att => {
+                e[att] = +e[att];
+                allValues.push(e[att]);
+            });
+        });
 
         let colorScale = d3.scaleOrdinal()
                         .range(["#7fcdbb", "#2c7fb8"]);
 
         x0.domain(keys);
         x1.domain(selectedCountries).rangeRound([0, x0.bandwidth()]);
-        y.domain([0, 100]);
+        y.domain([0, Math.max(...allValues)]);
 
         g.append("g")
             .selectAll("g")
